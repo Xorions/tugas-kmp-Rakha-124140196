@@ -55,10 +55,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-/**
- * Data statis profil pengguna.
- * Dipisah dari composable agar mudah diganti/diambil dari sumber data lain.
- */
 private object ProfileData {
     const val NAME = "Rakha Daffa Tama Truski"
     const val NIM = "124140196"
@@ -67,12 +63,10 @@ private object ProfileData {
     const val PHONE = "+62 812-3456-7890"
     const val LOCATION = "Lampung, Indonesia"
 
-    /** Dipakai sebagai pengganti foto profil pada [ProfileHeader]. */
     const val INITIALS = "RT"
 }
 
-/** Model baris informasi kontak yang dirender oleh [InfoItem]. */
-private data class ContactInfo(
+data class ContactInfo(
     val icon: ImageVector,
     val label: String,
     val value: String
@@ -84,12 +78,6 @@ private val contactList = listOf(
     ContactInfo(Icons.Filled.LocationOn, "Location", ProfileData.LOCATION)
 )
 
-/**
- * Komposable #1 —Bagian atas profil berisi avatar circular, nama, NIM, dan bio singkat.
- *
- * Avatar memakai `Box` dengan [CircleShape]. Karena asset foto belum tersedia,
- * inisial [initials] yang ditampilkan di dalam lingkaran (bisa diganti `Image`/`Icon`).
- */
 @Composable
 fun ProfileHeader(
     name: String,
@@ -160,9 +148,6 @@ fun ProfileHeader(
     }
 }
 
-/**
- * Komposable #2 —Satu baris informasi kontak berisi Icon + Label + Value.
- */
 @Composable
 fun InfoItem(
     icon: ImageVector,
@@ -211,11 +196,8 @@ fun InfoItem(
     }
 }
 
-/**
- * Komposable #3 —Card pembungkus yang menampung daftar [InfoItem].
- */
 @Composable
-fun ProfileCard(
+private fun ProfileCard(
     contacts: List<ContactInfo>,
     modifier: Modifier = Modifier
 ) {
